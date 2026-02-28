@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua van Es — Law, History, Technology, Policy</title>
+    <meta name="description" content="Joshua van Es is a corporate lawyer, researcher, and entrepreneur exploring how Canada can build trusted infrastructure for the AI era.">
+    <meta property="og:title" content="Joshua van Es">
+    <meta property="og:description" content="Law. History. Technology. Policy. Building trusted infrastructure for the AI era.">
+    <meta property="og:url" content="https://joshuavanes.ca">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://joshuavanes.ca">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400;1,6..72,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg-dark:#0c0f14;--bg-elevated:#141820;--bg-card:#181d26;--bg-light:#f5f3ee;--ink:#0a0a0a;--gold:#c9a94e;--gold-dim:rgba(201,169,78,.15);--text-light:#e8e4dc;--text-muted:#8a8578;--text-dark-muted:#6b7280;--border-light:#d8d4ca;--border-dark:rgba(255,255,255,.08);--serif:'Newsreader','Georgia',serif;--sans:'Manrope','Helvetica Neue',sans-serif}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--sans);background:var(--bg-dark);color:var(--text-light);line-height:1.7;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}::selection{background:var(--gold);color:var(--bg-dark)}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+
+        /* NAV */
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(12,15,20,.8);border-bottom:1px solid var(--border-dark)}
+        .nav-name{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--text-light)}
+        .nav-links{display:flex;gap:2.5rem;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400}
+        .nav-links a{color:var(--text-muted);transition:color .3s}
+        .nav-links a:hover{color:var(--gold)}
+        .nav-cta{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:.55rem 1.4rem;border:1px solid var(--gold);color:var(--gold);font-weight:400;transition:all .3s}
+        .nav-cta:hover{background:var(--gold);color:var(--bg-dark)}
+
+        /* HERO */
+        .hero{min-height:100vh;display:grid;grid-template-columns:1fr 400px;gap:4rem;align-items:center;padding:8rem 3rem 6rem;max-width:1200px;margin:0 auto;position:relative}
+        .hero::before{content:'';position:absolute;top:-100px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(201,169,78,.06) 0%,transparent 65%);pointer-events:none}
+        .hero-content{position:relative;z-index:1}
+        .hero-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;font-weight:500;opacity:0;animation:fadeUp .7s ease .2s forwards}
+        .hero h1{font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);line-height:1.05;letter-spacing:-.02em;font-weight:400;margin-bottom:2rem;opacity:0;animation:fadeUp .7s ease .35s forwards}
+        .hero h1 em{font-style:italic;color:var(--text-muted)}
+        .hero-rule{width:50px;height:2px;background:var(--gold);margin-bottom:2rem;opacity:0;animation:fadeUp .7s ease .5s forwards}
+        .hero-desc{font-size:1.1rem;max-width:520px;color:var(--text-muted);line-height:1.85;margin-bottom:2.5rem;opacity:0;animation:fadeUp .7s ease .6s forwards}
+        .hero-tags{display:flex;gap:.75rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease .75s forwards}
+        .hero-tag{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem 1rem;border:1px solid var(--border-dark);color:var(--text-muted);font-weight:400;transition:all .3s}
+        .hero-tag:hover{border-color:var(--gold);color:var(--gold)}
+
+        /* Headshot */
+        .hero-photo{position:relative;opacity:0;animation:fadeUp .7s ease .5s forwards}
+        .hero-photo-frame{position:relative;width:100%;max-width:380px;margin-left:auto}
+        .hero-photo-frame::before{content:'';position:absolute;top:-12px;right:-12px;width:100%;height:100%;border:1px solid var(--gold);opacity:.3;z-index:0}
+        .hero-photo-frame img{width:100%;height:auto;position:relative;z-index:1;filter:grayscale(15%) contrast(1.05)}
+        .hero-photo-caption{margin-top:1.2rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-align:right}
+        .hero-photo-caption span{color:var(--gold)}
+
+        /* FEATURED BAR */
+        .featured-bar{border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark);padding:3rem;text-align:center}
+        .featured-bar-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2rem;font-weight:400}
+        .featured-logos{display:flex;justify-content:center;align-items:center;gap:4rem;flex-wrap:wrap}
+        .featured-logo{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--text-muted);opacity:.5;transition:opacity .3s;letter-spacing:.02em}
+        .featured-logo:hover{opacity:1}
+        .featured-logo.italic{font-style:italic}
+        .featured-logo.bold{font-weight:500}
+        .featured-logo.sc{font-family:var(--sans);font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+
+        /* SECTIONS */
+        .section-light{background:var(--bg-light);color:var(--ink)}
+        .section-dark{background:var(--bg-dark);color:var(--text-light)}
+        .section-elevated{background:var(--bg-elevated);color:var(--text-light)}
+        .container{max-width:1200px;margin:0 auto;padding:7rem 3rem}
+        .section-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-weight:500}
+        .section-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-.015em;font-weight:400;line-height:1.2;margin-bottom:1.5rem}
+        .section-subtitle{font-size:1.05rem;color:var(--text-muted);max-width:600px;line-height:1.8;margin-bottom:3.5rem}
+        .section-light .section-subtitle{color:var(--text-dark-muted)}
+        .section-light .section-title{color:var(--ink)}
+
+        /* ABOUT */
+        .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start}
+        .about-text p{margin-bottom:1.5rem;font-size:1.05rem;line-height:1.85}
+        .section-light .about-text p{color:#4a473f}
+        .about-text a{color:var(--ink);border-bottom:1px solid var(--gold);transition:border-color .3s;font-weight:400}
+        .about-text a:hover{border-bottom-color:var(--ink)}
+
+        .credentials-panel{background:var(--bg-dark);color:var(--text-light);padding:2.5rem;position:relative}
+        .credentials-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}
+        .credentials-panel h3{font-family:var(--serif);font-size:1.25rem;margin-bottom:2rem;font-weight:400}
+        .credential-item{padding:1.1rem 0;border-top:1px solid var(--border-dark)}
+        .credential-item:first-of-type{border-top:none}
+        .credential-role{font-size:.95rem;font-weight:400;margin-bottom:.2rem}
+        .credential-org{font-size:.82rem;color:var(--text-muted);font-weight:300}
+
+        /* TIMELINE */
+        .timeline{position:relative;padding-left:3rem}
+        .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),var(--border-dark))}
+        .timeline-item{position:relative;padding-bottom:3rem}
+        .timeline-item:last-child{padding-bottom:0}
+        .timeline-item::before{content:'';position:absolute;left:-3rem;top:.5rem;width:9px;height:9px;border-radius:50%;background:var(--gold);transform:translateX(-4px)}
+        .timeline-year{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;font-weight:500}
+        .timeline-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;margin-bottom:.5rem}
+        .timeline-desc{font-size:.92rem;color:var(--text-muted);line-height:1.7}
+
+        /* QUOTE */
+        .quote-section{background:var(--bg-elevated);border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark)}
+        .quote-container{max-width:800px;margin:0 auto;padding:5rem 3rem;text-align:center}
+        .quote-mark{font-family:var(--serif);font-size:4rem;color:var(--gold);line-height:1;margin-bottom:1.5rem;opacity:.5}
+        .quote-text{font-family:var(--serif);font-size:1.6rem;font-style:italic;line-height:1.6;color:var(--text-light);margin-bottom:1.5rem;font-weight:300}
+        .quote-attr{font-size:.82rem;color:var(--text-muted);letter-spacing:.05em}
+
+        /* PUBLICATIONS */
+        .pub-grid{display:grid;gap:0}
+        .pub-item{display:grid;grid-template-columns:160px 1fr auto;align-items:baseline;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--border-light);transition:all .3s;cursor:pointer}
+        .pub-item:first-child{border-top:1px solid var(--border-light)}
+        .pub-item:hover{padding-left:1rem;background:rgba(201,169,78,.04)}
+        .pub-item:hover .pub-arrow{opacity:1;transform:translateX(0)}
+        .pub-outlet{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:500;padding-top:.15rem}
+        .pub-title{font-family:var(--serif);font-size:1.3rem;line-height:1.35;font-weight:400;color:var(--ink)}
+        .pub-desc{font-size:.88rem;color:var(--text-dark-muted);margin-top:.35rem;font-weight:300;line-height:1.6}
+        .pub-arrow{font-size:1.3rem;color:var(--gold);opacity:0;transform:translateX(-8px);transition:all .3s}
+
+        /* PROJECTS */
+        .project-featured-card{background:var(--bg-card);padding:4rem;position:relative;overflow:hidden;margin-bottom:4rem;border:1px solid var(--border-dark)}
+        .project-featured-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent 70%)}
+        .project-featured-card::after{content:'';position:absolute;top:-50px;right:-50px;width:400px;height:400px;background:radial-gradient(circle,rgba(201,169,78,.06) 0%,transparent 65%);pointer-events:none}
+        .pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+        .pf-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-weight:500}
+        .pf-title{font-family:var(--serif);font-size:2.5rem;font-weight:400;letter-spacing:-.02em;line-height:1.2;margin-bottom:1.5rem}
+        .pf-desc{font-size:1.05rem;color:var(--text-muted);line-height:1.85;margin-bottom:2.5rem}
+        .pf-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+        .stat-card{padding:1.5rem;border:1px solid var(--border-dark);text-align:center}
+        .stat-number{font-family:var(--serif);font-size:2rem;color:var(--gold);font-weight:400;margin-bottom:.3rem}
+        .stat-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-weight:400;line-height:1.4}
+
+        .cta-button{display:inline-flex;align-items:center;gap:.75rem;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;padding:.85rem 2rem;border:1px solid var(--gold);color:var(--gold);transition:all .3s}
+        .cta-button:hover{background:var(--gold);color:var(--bg-dark)}
+        .cta-button svg{width:16px;height:16px;transition:transform .3s}
+        .cta-button:hover svg{transform:translateX(4px)}
+
+        .ps-card{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;padding:3rem;border:1px solid var(--border-dark)}
+        .ps-card h3{font-family:var(--serif);font-size:1.7rem;font-weight:400;margin-bottom:1.2rem}
+        .ps-card p{color:var(--text-muted);margin-bottom:1rem;font-size:.98rem;line-height:1.75}
+        .link-list{display:flex;flex-direction:column;gap:.6rem;margin-top:1.5rem}
+        .link-list a{font-size:.85rem;color:var(--text-muted);display:inline-flex;align-items:center;gap:.5rem;width:fit-content;transition:color .3s}
+        .link-list a:hover{color:var(--gold)}
+        .detail-box{padding:2rem;background:var(--bg-card);border:1px solid var(--border-dark)}
+        .detail-box h4{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;font-weight:500}
+        .detail-box p{color:var(--text-muted);font-size:.92rem;line-height:1.75}
+
+        /* CONTACT */
+        .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start}
+        .contact-text{font-size:1.1rem;line-height:1.85;color:var(--text-muted);margin-bottom:2rem}
+        .contact-links{display:flex;flex-direction:column}
+        .contact-link{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 0;border-bottom:1px solid var(--border-dark);transition:all .3s}
+        .contact-link:first-child{border-top:1px solid var(--border-dark)}
+        .contact-link:hover{padding-left:.75rem}
+        .contact-link:hover .cv{color:var(--gold)}
+        .cl{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);font-weight:400}
+        .cv{font-weight:400;transition:color .3s}
+
+        /* FOOTER */
+        footer{border-top:1px solid var(--border-dark);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:var(--text-muted);max-width:1200px;margin:0 auto}
+        .footer-links{display:flex;gap:2rem}
+        .footer-links a{color:var(--text-muted);transition:color .3s}
+        .footer-links a:hover{color:var(--gold)}
+
+        /* ANIMATIONS */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+        .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            nav{padding:1rem 1.5rem}.nav-links,.nav-cta{display:none}
+            .hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem;min-height:auto;gap:3rem}
+            .hero-photo{order:-1}.hero-photo-frame{max-width:260px;margin:0 auto}
+            .container{padding:4rem 1.5rem}
+            .about-grid,.contact-grid,.pf-grid,.ps-card{grid-template-columns:1fr;gap:2.5rem}
+            .pub-item{grid-template-columns:1fr;gap:.3rem}.pub-arrow{display:none}
+            .project-featured-card{padding:2rem}
+            .featured-logos{gap:2rem}.featured-logo{font-size:1.2rem}.featured-logo.sc{font-size:.9rem}
+        }
+        @media(max-width:480px){
+            .hero h1{font-size:2.6rem}.pf-stats{grid-template-columns:1fr}.hero-tags{gap:.4rem}.hero-tag{font-size:.65rem}
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="nav-name">Joshua van Es</a>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#writing">Writing</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <a href="https://upperharbour.ca" target="_blank" rel="noopener" class="nav-cta">Upper Harbour →</a>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <p class="hero-label">Law · History · Technology · Policy</p>
+        <h1>Joshua<br><em>van Es</em></h1>
+        <div class="hero-rule"></div>
+        <p class="hero-desc">Corporate lawyer, researcher, and entrepreneur exploring how Canada can build trusted infrastructure for the AI era.</p>
+        <div class="hero-tags">
+            <span class="hero-tag">Corporate Law</span>
+            <span class="hero-tag">AI Governance</span>
+            <span class="hero-tag">Data Sovereignty</span>
+            <span class="hero-tag">Canadian History</span>
+        </div>
+    </div>
+    <div class="hero-photo">
+        <div class="hero-photo-frame">
+            <img src="joshua-van-es-headshot.jpg" alt="Joshua van Es" width="380" height="380">
+        </div>
+        <p class="hero-photo-caption"><span>Stikeman Elliott</span> · Vancouver</p>
+    </div>
+</section>
+
+<div class="featured-bar">
+    <p class="featured-bar-label">Writing Featured In</p>
+    <div class="featured-logos">
+        <a href="https://macleans.ca/technology-3/canada-needs-homegrown-ai-infrastructure/" target="_blank" rel="noopener" class="featured-logo italic">Maclean's</a>
+        <a href="https://betakit.com/author/joshua-van-es/" target="_blank" rel="noopener" class="featured-logo bold">BetaKit</a>
+        <a href="https://opencanada.org/canadas-sovereign-ai-compute-gap-why-were-still-treating-a-strategic-asset-as-a-service/" target="_blank" rel="noopener" class="featured-logo sc">OpenCanada</a>
+        <a href="https://www.mqup.ca/landscapes-of-injustice-products-9780228001713.php" target="_blank" rel="noopener" class="featured-logo sc">MQUP</a>
+    </div>
+</div>
+
+<div class="section-light" id="about">
+    <div class="container">
+        <div class="reveal">
+            <p class="section-label">About</p>
+            <h2 class="section-title">Bridging law, technology,<br>and national interest.</h2>
+            <p class="section-subtitle">From documenting Canada's history to shaping its digital future.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <p>Joshua van Es is an <a href="https://stikeman.com/en-ca/people/v/joshua-van-es" target="_blank" rel="noopener">articling student in corporate law at Stikeman Elliott</a> whose work spans the intersection of legal practice, technology policy, and Canadian history.</p>
+                <p>He holds a J.D. from the University of British Columbia and degrees in psychology and history, including a master's in Canadian history from the University of Victoria. His <a href="https://www.researchgate.net/profile/Josh-Van-Es" target="_blank" rel="noopener">research</a> has taken him from national history projects like <em>Landscapes of Injustice</em> to the frontlines of AI governance — asking hard questions about who controls Canada's digital infrastructure, and why it matters.</p>
+                <p>Beyond the law, Joshua has built a <a href="https://cordovabaymedicalclinic.ca/" target="_blank" rel="noopener">primary-care clinic</a>, contributed to national policy conversations through publications in <em>Maclean's</em>, <em>OpenCanada</em>, and <em>BetaKit</em>, and is now focused on data sovereignty and trusted AI infrastructure through <a href="https://upperharbour.ca" target="_blank" rel="noopener">Upper Harbour</a>.</p>
+            </div>
+            <div class="credentials-panel reveal rd2">
+                <h3>Background</h3>
+                <div class="credential-item"><div class="credential-role">Articling Student, Corporate Law</div><div class="credential-org">Stikeman Elliott LLP</div></div>
+                <div class="credential-item"><div class="credential-role">Founder & CEO</div><div class="credential-org">Upper Harbour</div></div>
+                <div class="credential-item"><div class="credential-role">Juris Doctor (J.D.)</div><div class="credential-org">University of British Columbia</div></div>
+                <div class="credential-item"><div class="credential-role">M.A., Canadian History</div><div class="credential-org">University of Victoria</div></div>
+                <div class="credential-item"><div class="credential-role">Founder</div><div class="credential-org">Cordova Bay Medical Clinic</div></div>
+                <div class="credential-item"><div class="credential-role">Research Contributor</div><div class="credential-org">Landscapes of Injustice (SSHRC)</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-dark">
+    <div class="container">
+        <div class="reveal">
+            <p class="section-label">Journey</p>
+            <h2 class="section-title" style="margin-bottom:3.5rem">From archives to infrastructure.</h2>
+        </div>
+        <div class="timeline reveal">
+            <div class="timeline-item">
+                <div class="timeline-year">University of Victoria</div>
+                <div class="timeline-title">Master's in Canadian History</div>
+                <div class="timeline-desc">Studied the dispossession of Japanese Canadians during WWII. Contributed a chapter to the <em>Landscapes of Injustice</em> volume published by McGill-Queen's University Press, and authored the project's public-facing narrative website.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">Entrepreneurship</div>
+                <div class="timeline-title">Founded Cordova Bay Medical Clinic</div>
+                <div class="timeline-desc">Built a primary-care clinic from the ground up — operations, regulation, and building something people depend on.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">UBC Law</div>
+                <div class="timeline-title">Juris Doctor</div>
+                <div class="timeline-desc">Focused on the intersection of corporate law, technology regulation, and data governance. Began writing publicly about AI infrastructure and Canadian digital sovereignty.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">National Publications</div>
+                <div class="timeline-title">Maclean's, OpenCanada, BetaKit</div>
+                <div class="timeline-desc">Published widely on Canada's AI infrastructure gap, sovereign compute, and the policy failures that leave Canadian data exposed to foreign jurisdictions.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">Stikeman Elliott</div>
+                <div class="timeline-title">Corporate Law Articles</div>
+                <div class="timeline-desc">Articling in corporate law at one of Canada's leading national firms, working at the intersection of transactions, technology, and regulatory compliance.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-title">Launched Upper Harbour</div>
+                <div class="timeline-desc">Built compliance intelligence tooling to help Canadian organizations map jurisdictional exposure, document sovereignty risk, and meet Law 25 and PIPEDA requirements.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="quote-section">
+    <div class="quote-container reveal">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">Canada is building an AI strategy on infrastructure it doesn't own, in jurisdictions it doesn't control, subject to laws it didn't write.</p>
+        <p class="quote-attr">— Joshua van Es, Maclean's</p>
+    </div>
+</div>
+
+<div class="section-light" id="writing">
+    <div class="container">
+        <div class="reveal">
+            <p class="section-label">Writing & Publications</p>
+            <h2 class="section-title">Selected work.</h2>
+            <p class="section-subtitle">Writing on AI governance, digital sovereignty, Canadian law and history.</p>
+        </div>
+        <div class="pub-grid">
+            <a href="https://macleans.ca/technology-3/canada-needs-homegrown-ai-infrastructure/" target="_blank" rel="noopener" class="pub-item reveal">
+                <div class="pub-outlet">Maclean's</div>
+                <div><div class="pub-title">Canada Needs Homegrown AI Infrastructure</div><div class="pub-desc">On why relying on foreign cloud providers puts Canada's AI ambitions — and sovereignty — at risk.</div></div>
+                <span class="pub-arrow">→</span>
+            </a>
+            <a href="https://opencanada.org/canadas-sovereign-ai-compute-gap-why-were-still-treating-a-strategic-asset-as-a-service/" target="_blank" rel="noopener" class="pub-item reveal">
+                <div class="pub-outlet">OpenCanada</div>
+                <div><div class="pub-title">Canada's Sovereign AI Compute Gap</div><div class="pub-desc">Why we're still treating a strategic asset as a service — and what it costs us.</div></div>
+                <span class="pub-arrow">→</span>
+            </a>
+            <a href="https://betakit.com/author/joshua-van-es/" target="_blank" rel="noopener" class="pub-item reveal">
+                <div class="pub-outlet">BetaKit</div>
+                <div><div class="pub-title">Technology & Policy Coverage</div><div class="pub-desc">Writing on Canadian tech, AI governance, and the policy frameworks shaping digital sovereignty.</div></div>
+                <span class="pub-arrow">→</span>
+            </a>
+            <a href="https://www.mqup.ca/landscapes-of-injustice-products-9780228001713.php" target="_blank" rel="noopener" class="pub-item reveal">
+                <div class="pub-outlet">McGill-Queen's UP</div>
+                <div><div class="pub-title">Landscapes of Injustice</div><div class="pub-desc">Chapter contribution on the dispossession of Japanese Canadians during the Second World War.</div></div>
+                <span class="pub-arrow">→</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="section-dark" id="projects">
+    <div class="container">
+        <div class="reveal">
+            <p class="section-label">Projects</p>
+            <h2 class="section-title">What I'm building.</h2>
+            <p class="section-subtitle">From compliance tooling to historical research — projects focused on Canada's story and its future.</p>
+        </div>
+        <div class="project-featured-card reveal">
+            <div class="pf-grid">
+                <div>
+                    <p class="pf-label">Current Focus · 2026</p>
+                    <h3 class="pf-title">Upper Harbour</h3>
+                    <p class="pf-desc">Compliance intelligence for Canadian organizations. Upper Harbour helps institutions map where their data lives, trace jurisdictional exposure across their SaaS stack, and produce defensible compliance documentation under Law 25, PIPEDA, and government procurement requirements.</p>
+                    <a href="https://upperharbour.ca" target="_blank" rel="noopener" class="cta-button">Visit Upper Harbour <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+                <div>
+                    <div class="pf-stats">
+                        <div class="stat-card"><div class="stat-number">693</div><div class="stat-label">SaaS tools mapped</div></div>
+                        <div class="stat-card"><div class="stat-number">63%</div><div class="stat-label">Under foreign jurisdiction</div></div>
+                        <div class="stat-card"><div class="stat-number">89%</div><div class="stat-label">"CA-resident" still CLOUD Act exposed</div></div>
+                        <div class="stat-card"><div class="stat-number">11%</div><div class="stat-label">Truly Canadian-owned</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ps-card reveal">
+            <div>
+                <h3>Landscapes of Injustice</h3>
+                <p>A seven-year, SSHRC-funded research collaboration across Canadian universities examining the dispossession of Japanese Canadians during and after the Second World War.</p>
+                <p>Joshua wrote the project's public-facing narrative website and contributed a chapter to the published volume from McGill-Queen's University Press.</p>
+                <div class="link-list">
+                    <a href="https://loi.uvic.ca/narrative/" target="_blank" rel="noopener">Read the narrative website →</a>
+                    <a href="https://www.mqup.ca/landscapes-of-injustice-products-9780228001713.php" target="_blank" rel="noopener">See the published volume →</a>
+                    <a href="https://www.landscapesofinjustice.com/students-josh-van-es/" target="_blank" rel="noopener">Project contributor page →</a>
+                </div>
+            </div>
+            <div class="detail-box">
+                <h4>Project Details</h4>
+                <p>Funded by the Social Sciences and Humanities Research Council. A multi-university partnership led by the University of Victoria, documenting the systematic dispossession of Japanese Canadians — their homes, businesses, and communities — and the lasting consequences of that injustice.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-elevated" id="contact">
+    <div class="container">
+        <div class="reveal">
+            <p class="section-label">Contact</p>
+            <h2 class="section-title">Get in touch.</h2>
+        </div>
+        <div class="contact-grid">
+            <p class="contact-text reveal">Whether it's about AI policy, Canadian digital sovereignty, legal practice, or a shared interest in building things that matter — I'd welcome the conversation.</p>
+            <div class="contact-links reveal rd1">
+                <a href="mailto:josh@upperharbour.ca" class="contact-link"><span class="cl">Email</span><span class="cv">josh@upperharbour.ca</span></a>
+                <a href="https://ca.linkedin.com/in/joshuavanes" target="_blank" rel="noopener" class="contact-link"><span class="cl">LinkedIn</span><span class="cv">joshuavanes</span></a>
+                <a href="https://x.com/Joshuavanes" target="_blank" rel="noopener" class="contact-link"><span class="cl">X / Twitter</span><span class="cv">@Joshuavanes</span></a>
+                <a href="https://upperharbour.ca" target="_blank" rel="noopener" class="contact-link"><span class="cl">Upper Harbour</span><span class="cv">upperharbour.ca</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Joshua van Es</p>
+    <div class="footer-links">
+        <a href="https://ca.linkedin.com/in/joshuavanes" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/Joshuavanes" target="_blank" rel="noopener">X</a>
+        <a href="https://upperharbour.ca" target="_blank" rel="noopener">Upper Harbour</a>
+    </div>
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el=>observer.observe(el));
+
+function animateNumbers(){document.querySelectorAll('.stat-number').forEach(stat=>{const t=parseInt(stat.textContent),s=stat.textContent.includes('%')?'%':'';let c=0;const inc=t/40,timer=setInterval(()=>{c+=inc;if(c>=t){c=t;clearInterval(timer)}stat.textContent=Math.round(c)+s},30)})}
+const ss=document.querySelector('.pf-stats');
+if(ss){new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateNumbers();e.target._obs&&e.target._obs.unobserve(e.target)}})},{threshold:.3}).observe(ss)}
+</script>
+
+</body>
+</html>
