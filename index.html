@@ -26,7 +26,7 @@
         .nav-cta:hover{background:var(--gold);color:var(--bg-dark)}
 
         /* HERO */
-        .hero{min-height:100vh;display:grid;grid-template-columns:1fr 400px;gap:4rem;align-items:center;padding:8rem 3rem 6rem;max-width:1200px;margin:0 auto;position:relative}
+        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 6rem;max-width:1100px;margin:0 auto;position:relative}
         .hero::before{content:'';position:absolute;top:-100px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(201,169,78,.06) 0%,transparent 65%);pointer-events:none}
         .hero-content{position:relative;z-index:1}
         .hero-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;font-weight:500;opacity:0;animation:fadeUp .7s ease .2s forwards}
@@ -39,12 +39,9 @@
         .hero-tag:hover{border-color:var(--gold);color:var(--gold)}
 
         /* Headshot */
-        .hero-photo{position:relative;opacity:0;animation:fadeUp .7s ease .5s forwards}
-        .hero-photo-frame{position:relative;width:100%;max-width:380px;margin-left:auto}
-        .hero-photo-frame::before{content:'';position:absolute;top:-12px;right:-12px;width:100%;height:100%;border:1px solid var(--gold);opacity:.3;z-index:0}
-        .hero-photo-frame img{width:100%;height:auto;position:relative;z-index:1;filter:grayscale(15%) contrast(1.05)}
-        .hero-photo-caption{margin-top:1.2rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-align:right}
-        .hero-photo-caption span{color:var(--gold)}
+        .about-sidebar{display:flex;flex-direction:column;gap:2rem}
+        .about-photo{opacity:0;animation:fadeUp .7s ease .5s forwards}
+        .about-photo img{width:180px;height:180px;object-fit:cover;filter:grayscale(15%) contrast(1.05)}
 
         /* FEATURED BAR */
         .featured-bar{border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark);padding:3rem;text-align:center}
@@ -164,8 +161,8 @@
         /* RESPONSIVE */
         @media(max-width:900px){
             nav{padding:1rem 1.5rem}.nav-links,.nav-cta{display:none}
-            .hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem;min-height:auto;gap:3rem}
-            .hero-photo{order:-1}.hero-photo-frame{max-width:260px;margin:0 auto}
+            .hero{padding:7rem 1.5rem 4rem;min-height:auto}
+            .about-photo img{width:140px;height:140px}
             .container{padding:4rem 1.5rem}
             .about-grid,.contact-grid,.pf-grid,.ps-card{grid-template-columns:1fr;gap:2.5rem}
             .pub-item{grid-template-columns:1fr;gap:.3rem}.pub-arrow{display:none}
@@ -203,12 +200,6 @@
             <span class="hero-tag">Canadian History</span>
         </div>
     </div>
-    <div class="hero-photo">
-        <div class="hero-photo-frame">
-            <img src="joshua-van-es-headshot.jpg" alt="Joshua van Es" width="380" height="380">
-        </div>
-        <p class="hero-photo-caption"><span>Stikeman Elliott</span> · Vancouver</p>
-    </div>
 </section>
 
 <div class="featured-bar">
@@ -234,7 +225,11 @@
                 <p>He holds a J.D. from the University of British Columbia and degrees in psychology and history, including a master's in Canadian history from the University of Victoria. His <a href="https://www.researchgate.net/profile/Josh-Van-Es" target="_blank" rel="noopener">research</a> has taken him from national history projects like <em>Landscapes of Injustice</em> to the frontlines of AI governance — asking hard questions about who controls Canada's digital infrastructure, and why it matters.</p>
                 <p>Beyond the law, Joshua has built a <a href="https://cordovabaymedicalclinic.ca/" target="_blank" rel="noopener">primary-care clinic</a>, contributed to national policy conversations through publications in <em>Maclean's</em>, <em>OpenCanada</em>, and <em>BetaKit</em>, and is now focused on data sovereignty and trusted AI infrastructure through <a href="https://upperharbour.ca" target="_blank" rel="noopener">Upper Harbour</a>.</p>
             </div>
-            <div class="credentials-panel reveal rd2">
+            <div class="about-sidebar reveal rd2">
+                <div class="about-photo">
+                    <img src="joshua-van-es-headshot.jpg" alt="Joshua van Es" width="200" height="200">
+                </div>
+                <div class="credentials-panel">
                 <h3>Background</h3>
                 <div class="credential-item"><div class="credential-role">Articling Student, Corporate Law</div><div class="credential-org">Stikeman Elliott LLP</div></div>
                 <div class="credential-item"><div class="credential-role">Founder & CEO</div><div class="credential-org">Upper Harbour</div></div>
@@ -242,6 +237,7 @@
                 <div class="credential-item"><div class="credential-role">M.A., Canadian History</div><div class="credential-org">University of Victoria</div></div>
                 <div class="credential-item"><div class="credential-role">Founder</div><div class="credential-org">Cordova Bay Medical Clinic</div></div>
                 <div class="credential-item"><div class="credential-role">Research Contributor</div><div class="credential-org">Landscapes of Injustice (SSHRC)</div></div>
+                </div>
             </div>
         </div>
     </div>
@@ -340,7 +336,7 @@
                 <div>
                     <p class="pf-label">Current Focus · 2026</p>
                     <h3 class="pf-title">Upper Harbour</h3>
-                    <p class="pf-desc">Compliance intelligence for Canadian organizations. Upper Harbour helps institutions map where their data lives, trace jurisdictional exposure across their SaaS stack, and produce defensible compliance documentation under Law 25, PIPEDA, and government procurement requirements.</p>
+                    <p class="pf-desc">Technology sovereignty intelligence for Canadian organizations. Upper Harbour maps who controls the infrastructure Canada depends on — so organizations can prove compliance and policymakers can make informed decisions.</p>
                     <a href="https://upperharbour.ca" target="_blank" rel="noopener" class="cta-button">Visit Upper Harbour <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div>
                 <div>
@@ -381,7 +377,7 @@
         <div class="contact-grid">
             <p class="contact-text reveal">Whether it's about AI policy, Canadian digital sovereignty, legal practice, or a shared interest in building things that matter — I'd welcome the conversation.</p>
             <div class="contact-links reveal rd1">
-                <a href="mailto:josh@upperharbour.ca" class="contact-link"><span class="cl">Email</span><span class="cv">josh@upperharbour.ca</span></a>
+                <a href="/cdn-cgi/l/email-protection#2a404559426a5f5a5a4f58424b5848455f5804494b" class="contact-link"><span class="cl">Email</span><span class="cv"><span class="__cf_email__" data-cfemail="63090c100b2316131306110b0211010c16114d0002">[email&#160;protected]</span></span></a>
                 <a href="https://ca.linkedin.com/in/joshuavanes" target="_blank" rel="noopener" class="contact-link"><span class="cl">LinkedIn</span><span class="cv">joshuavanes</span></a>
                 <a href="https://x.com/Joshuavanes" target="_blank" rel="noopener" class="contact-link"><span class="cl">X / Twitter</span><span class="cv">@Joshuavanes</span></a>
                 <a href="https://upperharbour.ca" target="_blank" rel="noopener" class="contact-link"><span class="cl">Upper Harbour</span><span class="cv">upperharbour.ca</span></a>
@@ -399,15 +395,14 @@
     </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const reveals=document.querySelectorAll('.reveal');
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 reveals.forEach(el=>observer.observe(el));
 
 function animateNumbers(){document.querySelectorAll('.stat-number').forEach(stat=>{const t=parseInt(stat.textContent),s=stat.textContent.includes('%')?'%':'';let c=0;const inc=t/40,timer=setInterval(()=>{c+=inc;if(c>=t){c=t;clearInterval(timer)}stat.textContent=Math.round(c)+s},30)})}
-const ss=document.querySelector('.pf-stats');
-if(ss){new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateNumbers();e.target._obs&&e.target._obs.unobserve(e.target)}})},{threshold:.3}).observe(ss)}
+const statsSection=document.querySelector('.pf-stats');
+if(statsSection){new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateNumbers();e.target.dataset.animated='true'}})},{threshold:.2}).observe(statsSection);setTimeout(()=>{if(!statsSection.dataset.animated)animateNumbers()},800)}
 </script>
-
 </body>
 </html>
